@@ -3,16 +3,17 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
-class DatabaseSeeder extends Seeder
+use App\Models\item;
+class ItemSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        User::factory(10)->create();
+        //
+        item::factory(10)->create();
     }
 }
