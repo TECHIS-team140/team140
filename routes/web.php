@@ -13,11 +13,7 @@ use \App\Http\Controllers\ItemController;
 |
 */
 
-Route::get('/search/', function () {
-    return view('search.index');
-})->name('search.index');
-
-
+Route::get('/items/', [ItemController::class, 'index'])->name('item.index');
 
 Route::get('/items/create', [ItemController::class, 'showCreateForm'])->name('item.create');
 Route::post('/items/create', [ItemController::class, 'create']);
@@ -26,3 +22,6 @@ Route::get('/items/edit/{item}', [ItemController::class, 'showEditForm'])->name(
 Route::post('/items/edit/{item}', [ItemController::class, 'edit']);
 
 Route::get('/items/delete/{item}', [ItemController::class, 'destroy'])->name('item.delete');
+
+Route::get('/', [App\Http\Controllers\AccountController::class, 'lohin'])->name('login');
+Route::get('/logout', [App\Http\Controllers\AccountController::class, 'logout']);
