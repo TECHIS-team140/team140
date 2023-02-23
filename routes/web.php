@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ItemController;
+use \App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,12 @@ use \App\Http\Controllers\ItemController;
 Route::get('/search/', function () {
     return view('search.index');
 })->name('search.index');
+
+Route::get('/users', [UserController::class, 'users']);
+
+Route::get('/user/edit', [UserController::class, 'edit']);
+Route::post('/delete', [UserController::class, 'delete']);
+Route::post('/edit', [UserController::class, 'edit']);
 
 
 
