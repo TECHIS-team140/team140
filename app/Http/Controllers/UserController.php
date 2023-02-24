@@ -13,12 +13,11 @@ class UserController extends Controller
         $users = User::all();
         return view('/user/users', compact('users'));
     }
+   
 
 
 //編集画面表示
-public function editer(){
-    return view('edit');
-}
+
 
 
     /**
@@ -69,10 +68,31 @@ public function editer(){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    //編集画面表示
+    public function edit(Request $request){
+        
+    $users = User::where('id','=',$request->id)->first();
+    
+    return view('/user/edit')->with([
+        'user' => $users,
+    ]);
     }
+    //編集ボタン処理
+    public function memberEdit(Request $request){
+        $users = User::where('id','=',$request->id)->first();
+        $users->name = $request->name;
+        $users->tel =$request->tel;
+        $users->email =$request->email;
+        $users->save();
+        return redirect('/top');
+    }
+    //削除する
+    public function memberDelete(Request $request){
+        $users = User::where('id','=',$request->id)->first();
+        $users->delete();
+        return redirect('/top');
+    }
+
 
     /**
      * Update the specified resource in storage.

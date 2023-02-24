@@ -20,7 +20,7 @@ Route::get('/search/', function () {
 
 Route::get('/users', [UserController::class, 'users']);
 
-Route::get('/user/edit', [UserController::class, 'edit']);
+Route::get('edit/{id}', [UserController::class, 'edit']);
 Route::post('/delete', [UserController::class, 'delete']);
 Route::post('/edit', [UserController::class, 'edit']);
 

@@ -33,13 +33,14 @@
             <td>{{$value->id}}</td>
             <td>{{$value->name}}</td>
             <td>{{$value->email}}</td>
-            <td>{{$value->status}}</td>
-            <td><a href="/edit/{{$value->id}}"> >>編集</a></td>
+            <td>{{$value->role}}</td>
+            <td><a href="user/edit/{{$value->id}}"><button type="button">編集</button></a></td>
 
         </tr>
         @endforeach
     </table>
     </div>
+    
  </body>
 
  </html>
