@@ -82,6 +82,7 @@ class UserController extends Controller
         $users = User::where('id','=',$request->id)->first();
         $users->name = $request->name;
         $users->email =$request->email;
+        $users->password =$request->password;
         $users->role =$request->role;
         $users->save();
         return redirect('/users');

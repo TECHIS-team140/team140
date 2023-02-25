@@ -16,15 +16,23 @@
     </div>
  <div style="width:300px; margin:100px auto; text-align:center;">
     <h4>アカウント編集 ID:{{$user->id}}</h4>
+    <p>(管理者画面)</p>
     <form action="/memberEdit" method="post">
     @csrf
     <div style="text-align:left;">名前</div>
     <div class="form-group">
         <input class="form-control" type="text" name="name" value="{{$user->name}}">
     </div>
+    
     <div style="text-align:left;">メールアドレス</div>
     <div class="form-group">
         <input class="form-control" type="text" name="email" value="{{$user->email}}">
+    </div>
+
+    
+    <div style="text-align:left;">パスワード</div>
+    <div class="form-group">
+        <input class="form-control" type="password" name="password" value="{{$user->password}}">
     </div>
     
     <div class="form-group">
@@ -38,7 +46,7 @@
       <input type="radio" name="role" value= "0">利用者
       </label>
     </div>
-
+    
    
     <div class="form-group">
         <button type="submit" class="btn btn-secondary">編集</button>
