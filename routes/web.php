@@ -18,11 +18,17 @@ Route::get('/search/', function () {
     return view('search.index');
 })->name('search.index');
 
+
+//ユーザー一覧
 Route::get('/users', [UserController::class, 'users']);
 
-Route::get('edit/{id}', [UserController::class, 'edit']);
-Route::post('/delete', [UserController::class, 'delete']);
-Route::post('/edit', [UserController::class, 'edit']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+
+//編集ボタン
+Route::post('/memberEdit', [UserController::class,'memberEdit']);
+//削除ボタン
+Route::get('/memberDelete/{id}', [UserController::class,'memberDelete']);
+
 
 
 

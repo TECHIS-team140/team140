@@ -12,7 +12,7 @@
 
  <body>   
  <div style="text-align:left;">
-     <a href="/top"> >>TOPに戻る </a>
+     <a href="/users"> >>ユーザー一覧に戻る </a>
     </div>
  <div style="width:300px; margin:100px auto; text-align:center;">
     <h4>アカウント編集 ID:{{$user->id}}</h4>
@@ -26,14 +26,20 @@
     <div class="form-group">
         <input class="form-control" type="text" name="email" value="{{$user->email}}">
     </div>
-    <div style="text-align:left;">アクセス権限</div>
-    <div class="form-group">
-        <input class="form-control" type="text" name="role" value="{{$user->role}}">
-    </div>
+    
     <div class="form-group">
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">
     </div>
+
     
+    <div class="form-check" style="text-align:center;">
+      <label class="form-check-label">
+      <input type="radio" name="role" value= "1" checked>管理者
+      <input type="radio" name="role" value= "0">利用者
+      </label>
+    </div>
+
+   
     <div class="form-group">
         <button type="submit" class="btn btn-secondary">編集</button>
     </div>

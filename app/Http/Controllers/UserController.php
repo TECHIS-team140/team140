@@ -81,16 +81,16 @@ class UserController extends Controller
     public function memberEdit(Request $request){
         $users = User::where('id','=',$request->id)->first();
         $users->name = $request->name;
-        $users->tel =$request->tel;
         $users->email =$request->email;
+        $users->role =$request->role;
         $users->save();
-        return redirect('/top');
+        return redirect('/users');
     }
     //削除する
     public function memberDelete(Request $request){
         $users = User::where('id','=',$request->id)->first();
         $users->delete();
-        return redirect('/top');
+        return redirect('/users');
     }
 
 

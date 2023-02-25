@@ -33,7 +33,10 @@
             <td>{{$value->id}}</td>
             <td>{{$value->name}}</td>
             <td>{{$value->email}}</td>
-            <td>{{$value->role}}</td>
+            <td>@if($value->role == 1)
+             管理者</td>
+            @endif
+            
             <td><a href="user/edit/{{$value->id}}"><button type="button">編集</button></a></td>
 
         </tr>
