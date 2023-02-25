@@ -23,23 +23,31 @@
     <div class="form-group">
         <input class="form-control" type="text" name="name" value="{{$user->name}}">
     </div>
+    @if ($errors->has('name'))
+    <p class="text-danger">{{$errors->first('name')}}</p>
+    @endif
     
     <div style="text-align:left;">メールアドレス</div>
     <div class="form-group">
         <input class="form-control" type="text" name="email" value="{{$user->email}}">
     </div>
-
+    @if ($errors->has('email'))
+    <p class="text-danger">{{$errors->first('email')}}</p>
+    @endif
     
     <div style="text-align:left;">パスワード</div>
     <div class="form-group">
         <input class="form-control" type="password" name="password" value="{{$user->password}}">
     </div>
-    
+    @if ($errors->has('password_get_info'))
+    <p class="text-danger">{{$errors->first('name')}}</p>
+    @endif
+
     <div class="form-group">
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">
     </div>
 
-    
+    <div style="text-align:left;">アクセス権限変更</div>
     <div class="form-check" style="text-align:center;">
       <label class="form-check-label">
       <input type="radio" name="role" value= "1" checked>管理者

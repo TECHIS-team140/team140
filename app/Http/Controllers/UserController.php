@@ -79,6 +79,16 @@ class UserController extends Controller
     }
     //編集ボタン処理
     public function memberEdit(Request $request){
+        //バリデーションをする
+        $request->validate([
+            
+        'name'=>['required'],
+        'id'=>['required','unique:users'],
+        'email'=>['required','email'],
+        'password'=>['required'],
+        
+        ]);
+
         $users = User::where('id','=',$request->id)->first();
         $users->name = $request->name;
         $users->email =$request->email;
