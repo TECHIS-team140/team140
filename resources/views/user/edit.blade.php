@@ -10,7 +10,7 @@
  
     </head>
 
- <body>   
+ <body class="edit">   
  <div style="text-align:left;">
      <a href="/users"> >>ユーザー一覧に戻る </a>
     </div>

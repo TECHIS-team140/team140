@@ -7,22 +7,26 @@
         <title>ユーザー一覧</title>
         <!-- Bootstrap CSSの読み込み -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
- 
+        <!-- CSSの読み込み -->
+    <link rel="stylesheet" href="css/mfstyle.css">
+    
  </head>
- <body>
+ <body class="users">
+ <h4 class="name">ユーザー管理システム画面</h4>
     <div style="width:700px; margin:100px auto;">
     <div style="text-align:left;">
-     <a href="/top"> >>TOPに戻る </a>
+    <a href="/top" class="btn btn-outline-info" role="button">ホーム画面に戻る</a>
     </div>
     
     <div>
-        <table border="1" style="margin:10px" >
-       
+        <table class="table table-bordered" margin-top=10px;>
+      
+
         <tr>
-            <th style ="width:150px; text-align:center;">ID</th>
-            <th style ="width:150px; text-align:center;">名前</th>
-            <th style ="width:250px; text-align:center;">メールアドレス</th>
-            <th style ="width:150px; text-align:center;">ステータス</th>
+            <th style ="width:50px; ">ID</th>
+            <th style ="width:150px;">名前</th>
+            <th style ="width:250px;">メールアドレス</th>
+            <th style ="width:150px;">ステータス</th>
             <th></th>
         
         </tr>
@@ -37,13 +41,17 @@
              管理者</td>
             @endif
             
-            <td><a href="user/edit/{{$value->id}}"><button type="button">編集</button></a></td>
-
+            <td><a href="user/edit/{{$value->id}}"><button class="btn btn-info btn-block btn-sm">編集</button></a></td>
+            
         </tr>
         @endforeach
+        </div>
     </table>
     </div>
-    
+   
+   
  </body>
-
+ 
+ <a class="pagetop" href="#">
+    <div class="pagetop__arrow"></div></a>
  </html>
