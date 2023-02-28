@@ -15,9 +15,14 @@ use \App\Http\Controllers\ItemController;
 
 Route::get('/', [App\Http\Controllers\AccountController::class, 'login'])->name('login');
 Route::get('/account/signup', [App\Http\Controllers\AccountController::class, 'signup'])->name('signup');
-Route::post('/account/home_user', [App\Http\Controllers\AccountController::class, 'store'])->name('home_user');
-Route::get('/account/home_user', [App\Http\Controllers\AccountController::class, 'home'])->name('home_user');
-Route::get('/logout', [App\Http\Controllers\AccountController::class, 'logout']);
+
+Route::post('/account/store', [App\Http\Controllers\AccountController::class, 'store']);
+Route::get('/account/comp', [App\Http\Controllers\AccountController::class, 'comp']);
+Route::post('/account/auth', [App\Http\Controllers\AccountController::class, 'auth']);
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/account/home', [App\Http\Controllers\AccountController::class, 'home']);
+});
 
 
 
