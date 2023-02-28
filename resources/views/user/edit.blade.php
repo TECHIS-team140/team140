@@ -5,17 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>アカウント編集画面</title>
+        <!-- CSSの読み込み -->
+        <link rel="stylesheet" href="css/mfstyle.css">
         <!-- Bootstrap CSSの読み込み -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
- 
+        
     </head>
 
  <body class="edit">   
- <div style="text-align:left;">
-     <a href="/users"> >>ユーザー一覧に戻る </a>
-    </div>
+ <div class="border border-info rounded" style="margin:10px auto; padding:20px; width:400px;">
+
  <div style="width:300px; margin:100px auto; text-align:center;">
-    <h4>アカウント編集 ID:{{$user->id}}</h4>
+ 
+    <h4 class="name">アカウント編集 ID:{{$user->id}}</h4>
     <p>(管理者画面)</p>
     <form action="/memberEdit" method="post">
     @csrf
@@ -47,23 +49,27 @@
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">
     </div>
 
-    <div style="text-align:left;">アクセス権限変更</div>
+    <div style="text-align:left;">アクセス権限</div>
     <div class="form-check" style="text-align:center;">
       <label class="form-check-label">
       <input type="radio" name="role" value= "1" checked>管理者
-      <input type="radio" name="role" value= "0">利用者
+      <input type="radio" name="role" value= "0">   利用者
       </label>
     </div>
     
    
     <div class="form-group">
-        <button type="submit" class="btn btn-secondary">編集</button>
+        <button type="submit" class="btn btn-info btn-block ">編集</button>
     </div>
     
     <div class="form-group">
-        <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-secondary">削除</button>
+        <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-info btn-block">削除</button>
     </div>
+     <a href="/users"class="btn btn-outline-info" role="button">ユーザー一覧に戻る </a>
+    
     </form>
+ </div>   
+
 </div>
 
 

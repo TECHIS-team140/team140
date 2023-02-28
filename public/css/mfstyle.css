@@ -11,8 +11,7 @@
 }
 
 .users .name{
-    width:300px; 
-    margin:30px auto; 
+    margin-bottom: 50px;
     text-align:center;
 }
 
@@ -40,4 +39,18 @@ html {
     border-top: 3px solid #000;
     border-right: 3px solid #000;
     transform: translateY(20%) rotate(-45deg);
+}
+
+/* エディター画面のCSS */
+.edit .name{ 
+    margin-bottom: 20px;
+    color: aqua;
+
+}
+.form-check-label{
+    margin:20px auto;
+
+}
+.rounded{
+    border-radius:1rem;
 }

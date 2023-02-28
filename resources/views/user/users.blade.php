@@ -12,8 +12,8 @@
     
  </head>
  <body class="users">
- <h4 class="name">ユーザー管理システム画面</h4>
-    <div style="width:700px; margin:100px auto;">
+    <div style="width:700px; margin:100px auto; text-align:center;">
+    <h4 class="name">ユーザー管理システム画面</h4>
     <div style="text-align:left;">
     <a href="/top" class="btn btn-outline-info" role="button">ホーム画面に戻る</a>
     </div>
