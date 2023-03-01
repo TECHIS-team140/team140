@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\item;
+use App\Models\Item;
 use App\Models\User;
 
 use App\Http\Requests\ItemFormRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class ItemController extends Controller
 {
+    public function index(){
+        $items= Item::all();
+        return view('item.index',compact("items"));
+    }
     /**
      *商品登録画面表示
-     *
-     * @return \Illuminate\Http\Response
      */
     public function showCreateForm()
     {
@@ -25,12 +29,21 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ItemFormRequest $request)
+    public function create(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'status'=>'max:100',
+            'type' => 'integer',
+            'detail' => 'max:500',
+        ]);
        
+        //ログインしたユーザIDを設定するように後で修正
+      //  $user_id = Auth::id();
         $user_id= User::first()->id;
+
         //**ユーザIDも登録する** */
-        item::create([
+        Item::create([
             'user_id'=>$user_id,
             'name' => $request->name,
             'type' => $request->type,
@@ -38,19 +51,17 @@ class ItemController extends Controller
         ]);
       
         //商品一覧画面に戻る  
-        return redirect()->route('search.index');
+        return redirect()->route('item.index');
     }
 
     
     /**
      * 商品更新画面表示
      *
-     * @param  \App\Models\item  $item
+     * @param  \App\Models\Item  $item
      */
-    public function showEditForm(item $item)
+    public function showEditForm(Item $item)
     {
-
-        //
         return view('item.edit',compact('item'));
     }
 
@@ -58,19 +69,19 @@ class ItemController extends Controller
     /**
      * 商品更新
      *
-     * @param  \App\Models\item  $item
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(item $item,Request $request)
+    public function edit(Item $item,Request $request)
     {
-        //
+        //入力チェック
         $this->validate($request, [
             'name' => 'required|max:100',
             'status'=>'max:100',
             'type' => 'integer',
             'detail' => 'max:500',
         ]);
-
+        //データ更新
         $item->update([
             'name' => $request->name,
             'status' => $request->status,
@@ -79,13 +90,13 @@ class ItemController extends Controller
         ]);
 
         //商品一覧画面に戻る
-        return redirect()->route('search.index',['id'=>$item->id]);
+        return redirect()->route('item.index',['id'=>$item->id]);
     }
 
     /**
      * 商品削除
      *
-     * @param  \App\Models\item  $item
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
     public function destroy(item $item)
@@ -93,6 +104,6 @@ class ItemController extends Controller
         $item->delete();
         //
         //商品一覧画面に戻る
-        return redirect()->route('search.index');
+        return redirect()->route('item.index');
     }
 }
