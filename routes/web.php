@@ -13,10 +13,20 @@ use \App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [App\Http\Controllers\AccountController::class, 'login'])->name('login');
+Route::get('/account/signup', [App\Http\Controllers\AccountController::class, 'signup'])->name('signup');
+Route::post('/account/store', [App\Http\Controllers\AccountController::class, 'store']);
+Route::get('/account/comp', [App\Http\Controllers\AccountController::class, 'comp']);
+Route::post('/account/auth', [App\Http\Controllers\AccountController::class, 'auth']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/account/home', [App\Http\Controllers\AccountController::class, 'home']);
+});
 
-Route::get('/search/', function () {
-    return view('search.index');
-})->name('search.index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('index');
+Route::post('/search', [App\Http\Controllers\SearchController::class, 'type'])->name('type');
+Route::get('/detail/{id}', [App\Http\Controllers\SearchController::class, 'detail'])->name('detail');
 
 
 //ユーザー一覧
@@ -30,8 +40,7 @@ Route::post('/memberEdit', [UserController::class,'memberEdit']);
 Route::get('/memberDelete/{id}', [UserController::class,'memberDelete']);
 
 
-
-
+Route::get('/items/', [ItemController::class, 'index'])->name('item.index');
 Route::get('/items/create', [ItemController::class, 'showCreateForm'])->name('item.create');
 Route::post('/items/create', [ItemController::class, 'create']);
 
@@ -39,3 +48,5 @@ Route::get('/items/edit/{item}', [ItemController::class, 'showEditForm'])->name(
 Route::post('/items/edit/{item}', [ItemController::class, 'edit']);
 
 Route::get('/items/delete/{item}', [ItemController::class, 'destroy'])->name('item.delete');
+
+
