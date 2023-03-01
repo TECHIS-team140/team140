@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ItemController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,5 @@ Route::get('/items/edit/{item}', [ItemController::class, 'showEditForm'])->name(
 Route::post('/items/edit/{item}', [ItemController::class, 'edit']);
 
 Route::get('/items/delete/{item}', [ItemController::class, 'destroy'])->name('item.delete');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

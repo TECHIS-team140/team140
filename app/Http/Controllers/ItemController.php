@@ -95,4 +95,5 @@ class ItemController extends Controller
         //商品一覧画面に戻る
         return redirect()->route('search.index');
     }
+
 }
