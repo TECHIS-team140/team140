@@ -7,6 +7,8 @@ use App\Models\User;
 
 use App\Http\Requests\ItemFormRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class ItemController extends Controller
 {
     public function index(){
@@ -27,10 +29,19 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ItemFormRequest $request)
+    public function create(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'status'=>'max:100',
+            'type' => 'integer',
+            'detail' => 'max:500',
+        ]);
        
+        //ログインしたユーザIDを設定するように後で修正
+      //  $user_id = Auth::id();
         $user_id= User::first()->id;
+
         //**ユーザIDも登録する** */
         Item::create([
             'user_id'=>$user_id,
@@ -51,8 +62,6 @@ class ItemController extends Controller
      */
     public function showEditForm(Item $item)
     {
-
-        //
         return view('item.edit',compact('item'));
     }
 
@@ -65,14 +74,14 @@ class ItemController extends Controller
      */
     public function edit(Item $item,Request $request)
     {
-        //
+        //入力チェック
         $this->validate($request, [
             'name' => 'required|max:100',
             'status'=>'max:100',
             'type' => 'integer',
             'detail' => 'max:500',
         ]);
-
+        //データ更新
         $item->update([
             'name' => $request->name,
             'status' => $request->status,

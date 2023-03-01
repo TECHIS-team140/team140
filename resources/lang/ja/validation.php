@@ -85,7 +85,7 @@ return [
     'max' => [
         'numeric' => 'The :attribute must not be greater than :max.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'string' => 'The :attribute must not be greater than :max characters.',
+        'string' => ':attribute は :max 文字以内で入力してください',
         'array' => 'The :attribute must not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -107,7 +107,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => ':attribute が未入力です。',
+    'required' => ':attribute は必須入力です',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -158,6 +158,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => ['name' => '名前','status' => 'ステータス','type' => '種別','detail' => '詳細',],
 
 ];

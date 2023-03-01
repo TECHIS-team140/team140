@@ -21,7 +21,7 @@
                 @csrf
                 <div class="form-group mb-3">
                     <label for="name">名前</label>
-                    <input type="text" id="name" value="{{old('name')}}" name="name" class="form-control" />
+                    <input type="text" id="name" maxlength="100"  value="{{old('name')}}" name="name" class="form-control" />
                 </div>
                 <div class="form-group mb-3">
                     <label for="type">種別</label>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="detail">詳細</label>
-                    <textarea id="detail" name="detail" class="form-control" rows="5">{{old('detail')}}</textarea>
+                    <textarea id="detail" maxlength="500" name="detail" class="form-control" rows="5">{{old('detail')}}</textarea>
                 </div>
                 <div class="text-right m-3">
                     <button type="submit" class="btn btn-primary">
