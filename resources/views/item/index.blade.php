@@ -1,8 +1,13 @@
 @extends('item.layout')
 
 @section('content')
-
-
+<div class="text-end m-3">
+<form action="{{ url('/items/create') }}" method="GET">
+                    <button type="submit" class="btn btn-primary">
+                        新規登録
+                    </button>   
+</form>    
+</div>
 <table class="table">
     <thead>
         <tr>
