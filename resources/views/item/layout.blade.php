@@ -17,18 +17,14 @@
 
     @yield('styles')
 </head>
-<body>
-<header class="sticky-top ">
-  @include('parts.nav')
-</header>
 
-<main>
-    <div class="container">
+
+<div class="container">
         <div class="row">
             @yield('content')
         </div>
-    </div> 
-</main>
+</div> 
+
 @yield('scripts')   
 </body>
  
