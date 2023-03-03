@@ -1,0 +1,52 @@
+
+.companyinfo{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #ccffff;
+    font-size: 50PX;
+    text-align: center;
+    color: #7b6459;
+    
+}
+
+h1{
+    color: #7b6459;
+    padding: 0.25em 0.5em;/*上下 左右の余白*/
+  background: transparent;/*背景透明に*/
+  border-left: solid 5px #a8eaf8;/*左線*/
+  font-size: 30px;
+}
+
+.type{
+    font-size: 25px;
+    margin-right: 5%;
+}
+
+
+.flex{
+    display: flex;
+}
+
+.text{
+  font-size: 20px;
+  color: black;
+  
+}
+
+.textitem{
+  font-size: 20px;
+  color: black;
+  display: flex;
+}
+
+.container{
+  display: flex;
+  text-align: center;
+}
+
+.animalimg{
+  width: 10%;
+  height: auto;
+}

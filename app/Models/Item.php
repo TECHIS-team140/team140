@@ -71,4 +71,10 @@ class Item extends Model
         return self::TYPE[$type]['label'];
 
     }
+
+    //新着商品表示
+    public function Items()
+    {
+        return Item::orderBy('created_at','desc')->get();
+    }
 }
