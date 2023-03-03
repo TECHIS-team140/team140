@@ -69,4 +69,10 @@ class Item extends Model
 
         return self::TYPE[$type]['label'];
     }
+    // DBのtypeを変換
+    public function typeAsString(){
+        $types = ["1"=>"犬","2"=>"猫","3"=>"鳥","4"=>"うさぎ","5"=>"ハムスター"];
+
+        return $types[$this->type];
+    }
 }

@@ -13,22 +13,23 @@ class SearchController extends Controller
      */
     public function index(Request $request){
         //ステータスがactiveだけを取得
-        $query = Item::where('status', '=', 'active');
+        $query = Item::where('status', '=', 'active')->orderByDesc("updated_at");
 
         //セレクトボックス
         $selectType = $request->input('type');
+        //検索欄
+        $keyword = $request->input('keyword');
 
         if(!empty($selectType)) {
             $query->where('type', '=', "$selectType");
         }
 
-        //検索欄
-        $keyword = $request->input('keyword');
-
         if(!empty($keyword)) {
             $query->where('name', 'LIKE', "%{$keyword}%")
             -> orWhere('detail', 'LIKE', "%{$keyword}%");
         }
+
+    
 
         $items = $query->get();
 
