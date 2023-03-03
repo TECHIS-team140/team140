@@ -198,7 +198,6 @@
                 {
                     "url": "https://github.com/BenMorel",
                     "type": "github"
-<<<<<<< HEAD
                 },
                 {
                     "url": "https://tidelift.com/funding/github/packagist/brick/math",
@@ -251,8 +250,6 @@
                     "name": "Dragonfly Development Inc.",
                     "email": "info@dflydev.com",
                     "homepage": "http://dflydev.com"
-=======
->>>>>>> 40ef0b2e32f6368bc78734d35e1d6561b95a11d4
                 },
                 {
                     "url": "https://tidelift.com/funding/github/packagist/brick/math",
@@ -1398,7 +1395,6 @@
         },
         {
             "name": "league/commonmark",
-<<<<<<< HEAD
             "version": "2.3.9",
             "source": {
                 "type": "git",
@@ -1409,18 +1405,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c1e114f74e518daca2729ea8c4bf1167038fa4b5",
                 "reference": "c1e114f74e518daca2729ea8c4bf1167038fa4b5",
-=======
-            "version": "1.6.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "2b8185c13bc9578367a5bf901881d1c1b5bbd09b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/2b8185c13bc9578367a5bf901881d1c1b5bbd09b",
-                "reference": "2b8185c13bc9578367a5bf901881d1c1b5bbd09b",
->>>>>>> 40ef0b2e32f6368bc78734d35e1d6561b95a11d4
                 "shasum": ""
             },
             "require": {
@@ -1500,7 +1484,6 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
             "time": "2023-02-15T14:07:24+00:00"
         },
         {
@@ -1584,9 +1567,6 @@
                 }
             ],
             "time": "2022-12-11T20:36:23+00:00"
-=======
-            "time": "2022-01-13T17:18:13+00:00"
->>>>>>> 40ef0b2e32f6368bc78734d35e1d6561b95a11d4
         },
         {
             "name": "league/flysystem",
