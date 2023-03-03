@@ -72,6 +72,7 @@ class Item extends Model
 
     }
 
+    //新着商品表示
     public function Items()
     {
         return Item::orderBy('created_at','desc')->get();

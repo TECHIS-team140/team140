@@ -24,39 +24,29 @@ h1{
     margin-right: 5%;
 }
 
-.animalimg{
-    position: relative;
-    width: 70%;
-    display: flex;
-}
-
-.animalimg img{
-    width: 60%;
-}
-
-img{
-    border-radius: 10%;
-    animation: fluffy1 2s ease infinite; 
-}
-@keyframes fluffy1 {
-  0% {
-    transform: translateY(0); }
-  5% {
-    transform: translateY(0); }
-  10% {
-    transform: translateY(0); }
-  20% {
-    transform: translateY(-10px); }
-  25% {
-    transform: translateY(0); }
-  30% {
-    transform: translateY(-10px); }
-  50% {
-    transform: translateY(0); }
-  100% {
-    transform: translateY(0); } }
-
 
 .flex{
     display: flex;
+}
+
+.text{
+  font-size: 20px;
+  color: black;
+  
+}
+
+.textitem{
+  font-size: 20px;
+  color: black;
+  display: flex;
+}
+
+.container{
+  display: flex;
+  text-align: center;
+}
+
+.animalimg{
+  width: 10%;
+  height: auto;
 }

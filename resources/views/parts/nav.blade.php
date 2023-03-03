@@ -9,7 +9,7 @@
                     <a class="nav-link" href="/users">ユーザー管理</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="">商品管理</a>
+                    <a class="nav-link" href="/items">商品管理</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/home">ホーム</a>
