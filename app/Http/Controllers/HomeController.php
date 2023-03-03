@@ -14,6 +14,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-    return view('home.index');
+        $items= Item::Items();
+        return view('home.index',compact("items"));
     }
+
+
 }
