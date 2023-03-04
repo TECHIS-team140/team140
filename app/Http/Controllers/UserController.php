@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserController extends Controller
@@ -80,22 +80,22 @@ class UserController extends Controller
     //編集ボタン処理
     public function memberEdit(Request $request){
         //バリデーションをする
+
+
         $request->validate([
             
         'name'=>['required'],
-        'id'=>['required','unique:users'],
         'email'=>['required','email'],
         'password'=>['required'],
         'confirm_password' => ['required', 'same:password'],
 
-        ['confirm_password.same' => 'パスワードとパスワード確認が一致しません']
             
         ]);
-
+        
         $users = User::where('id','=',$request->id)->first();
         $users->name = $request->name;
         $users->email =$request->email;
-        $users->password =$request->password;
+        $users->password =Hash::make($request->password);
         $users->role =$request->role;
         $users->save();
         return redirect('/users');

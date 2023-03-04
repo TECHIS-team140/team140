@@ -142,6 +142,10 @@ return [
     */
 
     'custom' => [
+
+        'confirm_password' => [
+            'same' => ':otherと一致していません。',
+        ],
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
