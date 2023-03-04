@@ -21,39 +21,51 @@
     @can('admin-higher')<p>(管理者画面)</p>@endcan
     <form action="/memberEdit" method="post">
     @csrf
-    <div style="text-align:left;">名前</div>
-    <div class="form-group">
-        <input class="form-control" type="text" name="name" value="{{$user->name}}">
-    </div>
+
+
+<!-- 自分が管理者でIDが自分 -->
+    @if((Auth::user()->role == 1 and $user->id == Auth::id()) or Auth::user()->role == 0)
     
-    @if ($errors->has('name'))
-    <p class="text-danger">{{$errors->first('name')}}</p>
-    @endif
-    @cannot('admin-higher')
-    <div style="text-align:left;">メールアドレス</div>
-    <div class="form-group">
-        <input class="form-control" type="text" name="email" value="{{$user->email}}">
-    </div>
-    @if ($errors->has('email'))
-    <p class="text-danger">{{$errors->first('email')}}</p>
-    @endif
+        <div class="form-group">
+            <input class="form-control" type="text" name="name" value="{{$user->name}}">
+        </div>
+        @if ($errors->has('name'))
+        <p class="text-danger">{{$errors->first('name')}}</p>
+        @endif    
+        <div style="text-align:left;">メールアドレス</div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="email" value="{{$user->email}}">
+        </div>
+        @if ($errors->has('email'))
+        <p class="text-danger">{{$errors->first('email')}}</p>
+        @endif
+        
+        <div style="text-align:left;">パスワード<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password">
+        </div>
+        @if ($errors->has('password'))
+        <p class="text-danger">{{$errors->first('password')}}</p>
+        @endif
+
+        <div style="text-align:left;">パスワード確認<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="confirm_password" >
+        </div>
+        @if ($errors->has('confirm_password'))
+            <p class="text-danger">{{ $errors->first('confirm_password') }}</p>
+        @endif
     
-    <div style="text-align:left;">パスワード<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
-    <div class="form-group">
-        <input class="form-control" type="password" name="password">
-    </div>
-    @if ($errors->has('password'))
-    <p class="text-danger">{{$errors->first('password')}}</p>
+    <!-- @elseif($user->role == 1 && $user->id != Auth::id()) -->
+
+    @else
+        <div style="text-align:left;">名前</div>
+        {{$user->name}}
+        <div style="text-align:left;">メールアドレス</div>
+        {{$user->email}}
+
     @endif
 
-    <div style="text-align:left;">パスワード確認<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
-    <div class="form-group">
-        <input class="form-control" type="password" name="confirm_password" >
-    </div>
-    @if ($errors->has('confirm_password'))
-          <p class="text-danger">{{ $errors->first('confirm_password') }}</p>
-    @endif
-    @endcannot
 
     <div class="form-group">
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">

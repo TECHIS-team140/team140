@@ -12,15 +12,14 @@ class UserController extends Controller
  //ユーザー一覧表示
     public function users(){
         //今ログインしているユーザーを表示
-//         $user = Auth::user();
+        $user = Auth::user();
 
-//         if( $user->role == 1 ) {
-//         $users = User::all();
-// }
-//         else{
-//         $users = [$user];
-//         }
-        $users = User::all();
+       if( $user->role == 1 ) {
+            $users = User::all();   
+        }      
+        else{ $users = [$user];}
+
+        
         return view('/user/users', compact('users'));
     }
    
