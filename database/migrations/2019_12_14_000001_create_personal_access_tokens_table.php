@@ -17,7 +17,6 @@ class CreatePersonalAccessTokensTable extends Migration
             $table->id();
             Schema::defaultStringLength(191);
             $table->morphs('tokenable');
-            
             $table->string('name');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();
