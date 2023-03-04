@@ -86,7 +86,10 @@ class UserController extends Controller
         'id'=>['required','unique:users'],
         'email'=>['required','email'],
         'password'=>['required'],
-        
+        'confirm_password' => ['required', 'same:password'],
+
+        ['confirm_password.same' => 'パスワードとパスワード確認が一致しません']
+            
         ]);
 
         $users = User::where('id','=',$request->id)->first();

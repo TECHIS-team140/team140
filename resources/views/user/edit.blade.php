@@ -15,7 +15,7 @@
  <body class="edit">   
  <div class="border border-info round" style="margin:10px auto; padding:20px; width:400px;">
 
- <div style="width:300px; margin:60px auto; text-align:center;">
+ <div style="width:320px; margin:60px auto; text-align:center;">
  
     <h4 class="name">アカウント編集 ID:{{$user->id}}</h4>
     <p>(管理者画面)</p>
@@ -29,7 +29,7 @@
     @if ($errors->has('name'))
     <p class="text-danger">{{$errors->first('name')}}</p>
     @endif
-    @can('user-higher')
+    
     <div style="text-align:left;">メールアドレス</div>
     <div class="form-group">
         <input class="form-control" type="text" name="email" value="{{$user->email}}">
@@ -38,19 +38,28 @@
     <p class="text-danger">{{$errors->first('email')}}</p>
     @endif
     
-    <div style="text-align:left;">パスワード</div>
+    <div style="text-align:left;">パスワード<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
     <div class="form-group">
-        <input class="form-control" type="password" name="password" value="{{$user->password}}">
+        <input class="form-control" type="password" name="password">
     </div>
     @if ($errors->has('password_get_info'))
     <p class="text-danger">{{$errors->first('name')}}</p>
     @endif
 
+    <div style="text-align:left;">パスワード確認<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
+    <div class="form-group">
+        <input class="form-control" type="password" name="confirm_password" >
+    </div>
+    @if ($errors->has('confirm_password'))
+          <p class="text-danger">{{ $errors->first('confirm_password') }}</p>
+    @endif
+
+
     <div class="form-group">
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">
     </div>
 
-    @endcan
+    
     <div style="text-align:left;">アクセス権限</div>
     <div class="check-box">
     <div class="form-check1">
