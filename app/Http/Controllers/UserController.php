@@ -104,9 +104,9 @@ class UserController extends Controller
     public function memberDelete(Request $request){
         $users = User::where('id','=',$request->id)->first();
         $users->delete();
-        return redirect('/users');
+        return redirect('/home');
     }
-
+    
 
     /**
      * Update the specified resource in storage.

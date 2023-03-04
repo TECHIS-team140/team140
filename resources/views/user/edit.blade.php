@@ -18,7 +18,7 @@
  <div style="width:320px; margin:60px auto; text-align:center;">
  
     <h4 class="name">アカウント編集 ID:{{$user->id}}</h4>
-    <p>(管理者画面)</p>
+    @can('admin-higher')<p>(管理者画面)</p>@endcan
     <form action="/memberEdit" method="post">
     @csrf
     <div style="text-align:left;">名前</div>
@@ -42,8 +42,8 @@
     <div class="form-group">
         <input class="form-control" type="password" name="password">
     </div>
-    @if ($errors->has('password_get_info'))
-    <p class="text-danger">{{$errors->first('name')}}</p>
+    @if ($errors->has('password'))
+    <p class="text-danger">{{$errors->first('password')}}</p>
     @endif
 
     <div style="text-align:left;">パスワード確認<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
@@ -59,7 +59,7 @@
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">
     </div>
 
-    
+    @can('admin-higher')
     <div style="text-align:left;">アクセス権限</div>
     <div class="check-box">
     <div class="form-check1">
@@ -71,14 +71,15 @@
     <input type="radio" name="role" value= "0">利用者
     </div>
     </div>
-
+    @endcan
     <div class="form-group">
         <button type="submit" class="btn btn-info btn-block ">編集</button>
     </div>
-    
+    @can('admin-higher')
     <div class="form-group">
         <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-info btn-block">削除</button>
     </div>
+    @endcan
      <a href="/users" class="btn btn-outline-info" role="button">ユーザー一覧に戻る </a>
     
     </form>
