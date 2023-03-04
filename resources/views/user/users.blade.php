@@ -12,10 +12,11 @@
     
  </head>
  <body class="users">
+ @include('parts.nav')
     <div style="width:700px; margin:100px auto; text-align:center;">
     <h4 class="name">ユーザー管理システム画面</h4>
     <div style="text-align:left;">
-    <a href="/top" class="btn btn-outline-info" role="button">ホーム画面に戻る</a>
+    <a href="/home" class="btn btn-outline-info" role="button">ホーム画面に戻る</a>
     </div>
     
     <div>
@@ -34,12 +35,13 @@
         </div>
         @foreach($users as $value)
         <tr>
+            
             <td>{{$value->id}}</td>
             <td>{{$value->name}}</td>
             <td>{{$value->email}}</td>
             <td>@if($value->role == 1)
-             管理者</td>
-            @endif
+             管理者@endif</td>
+            
             
             <td><a href="user/edit/{{$value->id}}"><button class="btn btn-info btn-block btn-sm">編集</button></a></td>
             
