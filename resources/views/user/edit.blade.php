@@ -29,7 +29,7 @@
     @if ($errors->has('name'))
     <p class="text-danger">{{$errors->first('name')}}</p>
     @endif
-    
+    @cannot('admin-higher')
     <div style="text-align:left;">メールアドレス</div>
     <div class="form-group">
         <input class="form-control" type="text" name="email" value="{{$user->email}}">
@@ -53,7 +53,7 @@
     @if ($errors->has('confirm_password'))
           <p class="text-danger">{{ $errors->first('confirm_password') }}</p>
     @endif
-
+    @endcannot
 
     <div class="form-group">
         <input class="form-control" type="hidden" name="id" value="{{$user->id}}">

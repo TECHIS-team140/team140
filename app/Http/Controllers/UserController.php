@@ -5,18 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
  //ユーザー一覧表示
     public function users(){
+        //今ログインしているユーザーを表示
+//         $user = Auth::user();
+
+//         if( $user->role == 1 ) {
+//         $users = User::all();
+// }
+//         else{
+//         $users = [$user];
+//         }
         $users = User::all();
         return view('/user/users', compact('users'));
     }
    
 
 
-//編集画面表示
+
 
 
 
@@ -103,8 +113,16 @@ class UserController extends Controller
     //削除する
     public function memberDelete(Request $request){
         $users = User::where('id','=',$request->id)->first();
-        $users->delete();
+        $user = Auth::user();
+        if($user->role == 1) {
+            //自分のIDを削除したらログインに遷移
+            $users->delete($user->role == 1);
+            return redirect('/login');
+            }
+        else{
+            $users->delete();
         return redirect('/home');
+            }
     }
     
 
