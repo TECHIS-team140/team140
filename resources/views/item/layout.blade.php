@@ -18,7 +18,11 @@
     @yield('styles')
 </head>
 
+<body>
+<div class="sticky-top ">
 
+  @include('parts.nav')
+</div>
 <div class="container">
         <div class="row">
             @yield('content')
