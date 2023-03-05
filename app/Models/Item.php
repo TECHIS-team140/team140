@@ -74,5 +74,12 @@ class Item extends Model
         $types = ["1"=>"犬","2"=>"猫","3"=>"鳥","4"=>"うさぎ","5"=>"ハムスター"];
 
         return $types[$this->type];
+
+    }
+
+    //新着商品表示
+    public function Items()
+    {
+        return Item::orderBy('created_at','desc')->get();
     }
 }

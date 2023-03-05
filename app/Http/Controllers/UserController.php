@@ -3,20 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
  //ユーザー一覧表示
     public function users(){
-        $users = User::all();
+        //今ログインしているユーザーを表示
+        $user = Auth::user();
+
+       if( $user->role == 1 ) {
+            $users = User::all();   
+        }      
+        else{ $users = [$user];}
+
+        
         return view('/user/users', compact('users'));
     }
    
 
 
-//編集画面表示
+
 
 
 
@@ -80,19 +89,22 @@ class UserController extends Controller
     //編集ボタン処理
     public function memberEdit(Request $request){
         //バリデーションをする
+
+
         $request->validate([
             
         'name'=>['required'],
-        'id'=>['required','unique:users'],
         'email'=>['required','email'],
         'password'=>['required'],
-        
-        ]);
+        'confirm_password' => ['required', 'same:password'],
 
+            
+        ]);
+        
         $users = User::where('id','=',$request->id)->first();
         $users->name = $request->name;
         $users->email =$request->email;
-        $users->password =$request->password;
+        $users->password =Hash::make($request->password);
         $users->role =$request->role;
         $users->save();
         return redirect('/users');
@@ -100,10 +112,18 @@ class UserController extends Controller
     //削除する
     public function memberDelete(Request $request){
         $users = User::where('id','=',$request->id)->first();
-        $users->delete();
-        return redirect('/users');
+        $user = Auth::user();
+        if($user->role == 1) {
+            //自分のIDを削除したらログインに遷移
+            $users->delete($user->role == 1);
+            return redirect('/login');
+            }
+        else{
+            $users->delete();
+        return redirect('/home');
+            }
     }
-
+    
 
     /**
      * Update the specified resource in storage.

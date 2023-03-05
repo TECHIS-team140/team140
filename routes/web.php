@@ -32,9 +32,8 @@ Route::get('/detail/{id}', [App\Http\Controllers\SearchController::class, 'detai
 
 //ユーザー一覧
 Route::get('/users', [UserController::class, 'users']);
-
+//編集画面に遷移
 Route::get('/user/edit/{id}', [UserController::class, 'edit']);
-
 //編集ボタン
 Route::post('/memberEdit', [UserController::class,'memberEdit']);
 //削除ボタン
