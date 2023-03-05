@@ -38,10 +38,9 @@ class ItemController extends Controller
             'detail' => 'max:500',
         ]);
        
-        //ログインしたユーザIDを設定するように後で修正
-      //  $user_id = Auth::id();
-        $user_id= User::first()->id;
-
+        //ログインしたユーザIDを設定する
+        $user_id = Auth::id();
+        
         //**ユーザIDも登録する** */
         Item::create([
             'user_id'=>$user_id,
