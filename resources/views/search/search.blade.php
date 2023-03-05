@@ -22,7 +22,7 @@
         <form class="form-inline" action="{{ route('index') }}" method="get">
             <div class="form-group d-flex">
                 <select name="type" class="form-select text-muted w-25 bg-light" aria-label="Default select example">
-                    <option selected>種別を選択</option>
+                    <option value="" selected>種別を選択</option>
                     @foreach(config('pref') as $key => $score)
                     <option value="{{$key}}">{{ $score }}</option>
                     @endforeach
