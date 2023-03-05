@@ -7,6 +7,8 @@ use App\Models\User;
 
 use App\Http\Requests\HomeFormRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -15,8 +17,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $items= Item::Items();
-        return view('home.index',compact("items"));
+        $user = Auth::user();
+        return view('home.index',compact("items","user"));
     }
-
 
 }
