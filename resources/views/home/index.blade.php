@@ -2,19 +2,18 @@
 @section('contents')
 <div class ="companyinfo">
     ペット用品登録が簡単に行える！登録商品はすぐに検索可能！
-  <div class = "container">
-     <div class = "text">新着商品⇒</div>
-        <div class = "textitem">
+  <div class = "item">
+       新着商品⇒
+
         @foreach ($items as $item)
-          <div>{{ $item->name }}&nbsp / &nbsp</div>
+       {{ $item->name }}&nbsp / &nbsp
           @if ($loop->iteration === 5)
           @break
           @endif
           @endforeach
-        </div>
     </div>
 </div>
-          <div class ="animalimg">
-             <img src="/images/20220227-A7401691_TP_V.jpg" alt="">
-          </div>
+         
+   <img src="/images/20220227-A7401691_TP_V.jpg" alt="" class="top-image">
+   
 @endsection
