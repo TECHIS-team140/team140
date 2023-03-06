@@ -90,21 +90,31 @@ class UserController extends Controller
     public function memberEdit(Request $request){
         //バリデーションをする
 
-
+        if($request->type == 1){
         $request->validate([
-            
+        
         'name'=>['required'],
         'email'=>['required','email'],
         'password'=>['required','string', 'min:8'],
-        'confirm_password' => ['required', 'same:password'],
-
-            
+        'confirm_password' => ['required', 'same:password'],   
+        
         ]);
+        } else{
+            $request->validate([
+        
+                'name'=>['required'],
+                'email'=>['required','email'],
+                'role'=>['required'],
+            ]);
+        }
         
         $users = User::where('id','=',$request->id)->first();
+        // dd($users);
         $users->name = $request->name;
         $users->email =$request->email;
+        if($request->type == 1){
         $users->password =Hash::make($request->password);
+    };
         $users->role =$request->role;
         $users->save();
         return redirect('/users');
