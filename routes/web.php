@@ -22,8 +22,6 @@ Route::post('/account/auth', [App\Http\Controllers\AccountController::class, 'au
 Route::get('/logout', [App\Http\Controllers\AccountController::class, 'logout']);
 
 Route::group(['middleware' => 'auth'], function () {
-    // Route::get('/account/home', [App\Http\Controllers\AccountController::class, 'home']);
-
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('index');
