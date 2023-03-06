@@ -25,6 +25,6 @@
                     <a class="nav-link" href="/">ログアウト</a>
                 </li>
             </ul>
-                    <p class = "usertext">[ようこそ、{{ $user->name }}さん]</p>
+                    <p class = "usertext">[ようこそ、{{Auth::user()->name }}さん]</p>
         </div>
     </nav> 

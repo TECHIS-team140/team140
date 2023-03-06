@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $items= Item::Items();
+        $items= Item::orderBy('created_at','desc')->get();
         $user = Auth::user();
         return view('home.index',compact("items","user"));
     }
