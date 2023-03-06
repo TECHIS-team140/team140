@@ -121,18 +121,15 @@ class UserController extends Controller
     }
     //削除する
     public function memberDelete(Request $request){
-        $users = User::where('id','=',$request->id)->first();
-        $user = Auth::user();
-        //自分のIDを削除したらログインに遷移
-        if((Auth::user()->role == 1 and $user->id == Auth::id()) ) {
-            
-            $users->delete();
+        $user = User::where('id','=',$request->id)->first();
+        //ユーザーIDが自分のIDだったら削除してログイン画面へ遷移
+        if(($user->id == Auth::id())) {
+            $user->delete();
             return redirect('/login');
             }
-        else{
-            $users->delete();
-        return redirect('/home');
-            }
+            $user->delete();
+        return redirect('/users');
+            
     }
     
 
