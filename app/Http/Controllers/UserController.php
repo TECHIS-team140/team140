@@ -95,7 +95,7 @@ class UserController extends Controller
             
         'name'=>['required'],
         'email'=>['required','email'],
-        'password'=>['required'],
+        'password'=>['required','string', 'min:8'],
         'confirm_password' => ['required', 'same:password'],
 
             
@@ -113,9 +113,10 @@ class UserController extends Controller
     public function memberDelete(Request $request){
         $users = User::where('id','=',$request->id)->first();
         $user = Auth::user();
-        if($user->role == 1) {
-            //自分のIDを削除したらログインに遷移
-            $users->delete($user->role == 1);
+        //自分のIDを削除したらログインに遷移
+        if((Auth::user()->role == 1 and $user->id == Auth::id()) ) {
+            
+            $users->delete();
             return redirect('/login');
             }
         else{
