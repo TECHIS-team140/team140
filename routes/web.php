@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
-
 use \App\Http\Controllers\ItemController;
 use \App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,10 +51,6 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
     Route::get('/items/delete/{item}', [ItemController::class, 'destroy'])->name('item.delete');
 
 });
-
-
-
-
 
 
 
