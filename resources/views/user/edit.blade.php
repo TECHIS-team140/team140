@@ -62,7 +62,7 @@
     <!-- 管理者が利用者のID画面を編集する場合 -->
     @else
     <input type="hidden" value="2" name = "type">
-        <div class="name1">名前:　<span>{{$user->name}}</span></div>
+        <div style="text-align:left;">名前</div>{{$user->name}}
         <input type="hidden" value="{{$user->name}}" name = "name">
         <div style="text-align:left;">メールアドレス</div>
         {{$user->email}}
