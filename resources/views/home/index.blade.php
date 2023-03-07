@@ -1,7 +1,12 @@
 @extends('home.layout')
 @section('contents')
 <div class ="companyinfo">
-    ペット用品登録が簡単に行える！登録商品はすぐに検索可能！
+@auth
+@if (auth()->user()->role === 1)
+    ペット用品登録が簡単に行える！
+    @endif
+@endauth
+    様々なペット用品をすぐに検索可能！
   <div class = "item">
        新着商品⇒
 
