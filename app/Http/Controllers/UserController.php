@@ -125,14 +125,13 @@ class UserController extends Controller
         //ユーザーIDが自分のIDだったら削除してログイン画面へ遷移
         if(($user->id == Auth::id())) {
             $user->delete();
-            return redirect('/login');
+            return redirect('/');
             }
             $user->delete();
         return redirect('/users');
             
     }
-    
-
+   
     /**
      * Update the specified resource in storage.
      *

@@ -57,30 +57,9 @@
             <p class="text-danger">{{ $errors->first('confirm_password') }}</p>
         @endif
         <input type="hidden" name="role" value= "{{$user->role}}">
-        <!-- @can('admin-higher')
-        <div style="text-align:left;">アクセス権限</div>
-        <div class="check-box">
-        <div class="form-check1">
-        <label class="form-check-label">
-        <input type="radio" name="role" value= "1" checked>管理者</label>
-        </div>
-        <div class="form-check2">
-        <label class="form-check-label">
-        <input type="radio" name="role" value= "0">利用者
-        </div>
-        </div>
-        @endcan
-        <div class="form-group">
-        <button type="submit" class="btn btn-info btn-block ">編集</button>
-        </div>
-        @can('admin-higher')
-        <div class="form-group">
-        <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-info btn-block">削除</button>
-    </div>
-        @endcan
-        <a href="/users" class="btn btn-outline-info" role="button">ユーザー一覧に戻る </a>
-     -->
+        
     
+    <!-- 管理者が利用者のID画面を編集する場合 -->
     @else
     <input type="hidden" value="2" name = "type">
         <div class="name1">名前:　<span>{{$user->name}}</span></div>
