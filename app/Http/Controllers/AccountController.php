@@ -7,20 +7,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Auth;
-//use Symfony\Component\HttpFoundation\Cookie;
 
 use App\Models\User;
 
 class AccountController extends Controller
 {    
     /**
-     * ログイン
+     * ログイン画面表示
      * 
      * @param Request $request
      * @return Response
      */
     public function login()
     {
+        if (Auth::check()) {
+            // ユーザーはログイン済み
+            return redirect('/home');
+        }
+        
         return view('login');
     }
 
@@ -50,7 +54,7 @@ class AccountController extends Controller
     }
 
     /**
-     * 会員登録
+     * 会員登録画面表示
      * 
      * @param Request $request
      * @return Response
@@ -61,7 +65,7 @@ class AccountController extends Controller
     }
 
     /**
-     * 会員登録
+     * 会員登録処理
      * 
      * @param Request $request
      * @return Response
@@ -82,7 +86,6 @@ class AccountController extends Controller
             'password' => Hash::make($request->password), 
         ]);
 
-        /** 要確認 **/
         return redirect('/account/comp');
     }
 
@@ -95,17 +98,6 @@ class AccountController extends Controller
     public function comp()
     {
         return view('/account/comp');
-    }
-
-    /**
-     * ユーザーホーム画面
-     * 
-     * @param Request $request
-     * @return Response
-     */
-    public function home()
-    {
-        return view('/account/home');
     }
 
     /**
@@ -123,5 +115,16 @@ class AccountController extends Controller
         $request->session()->regenerateToken();
             
         return redirect('/');
+    }
+
+    /**
+     * ユーザーをリダイレクトするパスの取得
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return string
+     */
+    protected function redirectTo($request)
+    {
+        return route('/');
     }
 }
