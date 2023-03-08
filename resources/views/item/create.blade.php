@@ -26,11 +26,9 @@
                 <div class="form-group mb-3">
                     <label for="type">種別</label>
                     <select id="type" name="type" class="form-control">
+                        <option value="" selected disabled></option>
                         @foreach(\App\Models\Item::TYPE as $key => $val)
-                            <option
-                                value="{{ $key }}"
-                                {{ $key == old('type') ? 'selected' : '' }}
-                            >
+                            <option value="{{ $key }}">
                             {{ $val['label'] }}
                             </option>
                         @endforeach
@@ -38,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label for="detail">詳細</label>
-                    <textarea id="detail" maxlength="500" name="detail" class="form-control" rows="5">{{old('detail')}}</textarea>
+                    <textarea id="detail" maxlength="500" name="detail" class="form-control" rows="5">{{old('detail','')}}</textarea>
                 </div>
                 <div class="text-right m-3">
                     <button type="submit" class="btn btn-primary">

@@ -34,19 +34,20 @@ class ItemController extends Controller
         $this->validate($request, [
             'name' => 'required|max:100',
             'status'=>'max:100',
-            'type' => 'integer',
+            'type' => 'required|integer',
             'detail' => 'max:500',
         ]);
        
         //ログインしたユーザIDを設定する
         $user_id = Auth::id();
-        
+        $detail=isset($request->detail)?$request->detail:'';
+
         //**ユーザIDも登録する** */
         Item::create([
             'user_id'=>$user_id,
             'name' => $request->name,
             'type' => $request->type,
-            'detail' => $request->detail
+            'detail' => $detail
         ]);
       
         //商品一覧画面に戻る  
