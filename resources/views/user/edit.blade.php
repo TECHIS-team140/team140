@@ -79,7 +79,7 @@
     <div class="check-box">
     <div class="form-check1">
       <label class="form-check-label">
-      <input type="radio" name="role" value= "1">管理者</label>
+      <input type="radio" name="role" value= "1" >管理者</label>
     </div>
     <div class="form-check2">
     <label class="form-check-label">
