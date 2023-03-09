@@ -79,7 +79,7 @@
     <div class="check-box">
     <div class="form-check1">
       <label class="form-check-label">
-      <input type="radio" name="role" value= "1" >管理者</label>
+      <input type="radio" name="role" value= "1">管理者</label>
     </div>
     <div class="form-check2">
     <label class="form-check-label">
@@ -98,7 +98,7 @@
         <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-info btn-block">削除</button>
     </div>
     @endcan
-     <a href="/users" class="btn btn-outline-info" role="button">ユーザー一覧に戻る </a>
+     <a href="/users" class="btn btn-outline-info" role="button">ユーザー管理に戻る </a>
     
     </form>
  </div>   
