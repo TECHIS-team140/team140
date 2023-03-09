@@ -11,12 +11,16 @@
 </head>
 
 <body>
+    @include('parts.nav')
     <h1 class="shadow-sm p-2 mb-4 bg-body rounded">
         <a class="text-body text-decoration-none" href="{{ route('index') }}">
             商品詳細
         </a>
     </h1>
     <div class="wrapper m-4">
+        <a class="" href="{{ route('index') }}">
+            <-商品一覧画面に戻る
+        </a>
         <table class="table table-striped">
         <thead>
             <tr>
@@ -36,7 +40,7 @@
         </tbody>
         </table>
         <h2 class="fs-4">商品について：</h2>
-        <p>{{ $item->detail }}</p>
+        <p>{!! nl2br(e($item->detail)) !!}</p>
     </div>
 
 </body>
