@@ -162,6 +162,6 @@ return [
     'attributes' => ['name' => '名前',
                     'email' => 'メールアドレス',
                     'password' => 'パスワード',
-                    'confirm_password' => 'パスワード確認'],
+                    'confirm_password' => 'パスワード確認',],
 
 ];
