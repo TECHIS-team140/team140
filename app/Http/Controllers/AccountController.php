@@ -36,6 +36,11 @@ class AccountController extends Controller
      */
     public function auth(Request $request)
     {
+        /* $post_array = $request->all();
+        if(empty($post_array)){
+            return view('/');
+        } */
+
         $user_info = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -86,18 +91,7 @@ class AccountController extends Controller
             'password' => Hash::make($request->password), 
         ]);
 
-        return redirect('/account/comp');
-    }
-
-    /**
-     * アカウント登録完了画面
-     * 
-     * @param Request $request
-     * @return Response
-     */
-    public function comp()
-    {
-        return view('/account/comp');
+        return redirect('/')->with('flash_message', 'アカウント登録が完了しました');
     }
 
     /**
@@ -114,7 +108,7 @@ class AccountController extends Controller
 
         $request->session()->regenerateToken();
             
-        return redirect('/');
+        return redirect('/')->with('flash_message', 'ログアウトしました');
     }
 
     /**

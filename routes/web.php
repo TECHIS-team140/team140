@@ -16,8 +16,14 @@ use \App\Http\Controllers\UserController;
 */
 Route::get('/', [App\Http\Controllers\AccountController::class, 'login'])->name('login');
 Route::get('/account/signup', [App\Http\Controllers\AccountController::class, 'signup'])->name('signup');
+Route::get('/account/store', function(){
+    return redirect('/');
+});
 Route::post('/account/store', [App\Http\Controllers\AccountController::class, 'store']);
-Route::get('/account/comp', [App\Http\Controllers\AccountController::class, 'comp']);
+
+Route::get('/account/auth', function(){
+    return redirect('/');
+});
 Route::post('/account/auth', [App\Http\Controllers\AccountController::class, 'auth']);
 Route::get('/logout', [App\Http\Controllers\AccountController::class, 'logout']);
 
@@ -39,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    Route::get('/items/', [ItemController::class, 'index'])->name('item.index');
+    Route::get('/items', [ItemController::class, 'index'])->name('item.index');
     Route::get('/items/create', [ItemController::class, 'showCreateForm'])->name('item.create');
     Route::post('/items/create', [ItemController::class, 'create']);
 
