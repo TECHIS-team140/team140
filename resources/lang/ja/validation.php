@@ -140,9 +140,6 @@ return [
         'confirm_password' => [
             'same' => ':otherと一致していません。',
         ],
-        'role' => [
-            'required' => '選択してください。',
-        ],
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],

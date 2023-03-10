@@ -62,7 +62,7 @@
     <!-- 管理者が利用者のID画面を編集する場合 -->
     @else
     <input type="hidden" value="2" name = "type">
-        <div class="name1">名前:　<span>{{$user->name}}</span></div>
+        <div style="text-align:left;">名前</div>{{$user->name}}
         <input type="hidden" value="{{$user->name}}" name = "name">
         <div style="text-align:left;">メールアドレス</div>
         {{$user->email}}
@@ -79,16 +79,13 @@
     <div class="check-box">
     <div class="form-check1">
       <label class="form-check-label">
-      <input type="radio" name="role" value= "1">管理者</label>
+      <input type="radio" name="role" value= "1" {{ $user->role == "1" ? "checked" : "" }}>管理者</label>
     </div>
     <div class="form-check2">
     <label class="form-check-label">
-    <input type="radio" name="role" value= "0">利用者
+        <input type="radio" name="role" value= "0" {{ $user->role == "0" ? "checked" : "" }}>利用者
     </div>
     </div>
-    @if ($errors->has('role'))
-        <p class="text-danger">{{$errors->first('role')}}</p>
-        @endif   
     @endcan
     <div class="form-group">
         <button type="submit" class="btn btn-info btn-block ">編集</button>
@@ -98,7 +95,7 @@
         <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-info btn-block">削除</button>
     </div>
     @endcan
-     <a href="/users" class="btn btn-outline-info" role="button">ユーザー一覧に戻る </a>
+     <a href="/users" class="btn btn-outline-info" role="button">ユーザー管理に戻る </a>
     
     </form>
  </div>   
