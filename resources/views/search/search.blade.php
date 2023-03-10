@@ -13,9 +13,7 @@
 <body>
     @include('parts.nav')
     <h1 class="shadow-sm p-2 mb-4 bg-body rounded">
-        <a class="text-body text-decoration-none" href="{{ route('index') }}">
-            商品一覧
-        </a>
+        商品一覧
     </h1>
 
     <div class="wrapper m-4">
