@@ -79,16 +79,13 @@
     <div class="check-box">
     <div class="form-check1">
       <label class="form-check-label">
-      <input type="radio" name="role" value= "1">管理者</label>
+      <input type="radio" name="role" value= "1" {{ $user->role == "1" ? "checked" : "" }}>管理者</label>
     </div>
     <div class="form-check2">
     <label class="form-check-label">
-    <input type="radio" name="role" value= "0">利用者
+        <input type="radio" name="role" value= "0" {{ $user->role == "0" ? "checked" : "" }}>利用者
     </div>
     </div>
-    @if ($errors->has('role'))
-        <p class="text-danger">{{$errors->first('role')}}</p>
-        @endif   
     @endcan
     <div class="form-group">
         <button type="submit" class="btn btn-info btn-block ">編集</button>
