@@ -21,11 +21,12 @@
     @can('admin-higher')<p>(管理者画面)</p>@endcan
     <form action="/memberEdit" method="post">
     @csrf
+<input type="hidden" value="{{$user->id}}" name = "id">
 
-
-<!-- 自分が管理者でIDが自分 -->
+<!-- ログイン中の管理者かつ自分のID情報を表示する場合 または　利用者が自分のID情報を表示する場合-->
     @if((Auth::user()->role == 1 and $user->id == Auth::id()) or Auth::user()->role == 0)
-    
+    <input type="hidden" value="1" name = "type">
+        <div style="text-align:left;">名前</div>    
         <div class="form-group">
             <input class="form-control" type="text" name="name" value="{{$user->name}}">
         </div>
@@ -40,7 +41,7 @@
         <p class="text-danger">{{$errors->first('email')}}</p>
         @endif
         
-        <div style="text-align:left;">パスワード<span class="badge badge-danger ml-2">{{ __('必須') }}</span></div>
+        <div style="text-align:left;">パスワード<span class="badge badge-danger ml-2">{{ __('必須') }}</span><small id="passwordHelpInline" class="text-muted">　8文字以上で入力して下さい</small></div>
         <div class="form-group">
             <input class="form-control" type="password" name="password">
         </div>
@@ -55,15 +56,17 @@
         @if ($errors->has('confirm_password'))
             <p class="text-danger">{{ $errors->first('confirm_password') }}</p>
         @endif
+        <input type="hidden" name="role" value= "{{$user->role}}">
+        
     
-    <!-- @elseif($user->role == 1 && $user->id != Auth::id()) -->
-
+    <!-- 管理者が利用者のID画面を編集する場合 -->
     @else
-        <div style="text-align:left;">名前</div>
-        {{$user->name}}
+    <input type="hidden" value="2" name = "type">
+        <div style="text-align:left;">名前</div>{{$user->name}}
+        <input type="hidden" value="{{$user->name}}" name = "name">
         <div style="text-align:left;">メールアドレス</div>
         {{$user->email}}
-
+        <input type="hidden" value="{{$user->email}}" name = "email">
     @endif
 
 
@@ -76,11 +79,11 @@
     <div class="check-box">
     <div class="form-check1">
       <label class="form-check-label">
-      <input type="radio" name="role" value= "1" checked>管理者</label>
+      <input type="radio" name="role" value= "1" {{ $user->role == "1" ? "checked" : "" }}>管理者</label>
     </div>
     <div class="form-check2">
     <label class="form-check-label">
-    <input type="radio" name="role" value= "0">利用者
+        <input type="radio" name="role" value= "0" {{ $user->role == "0" ? "checked" : "" }}>利用者
     </div>
     </div>
     @endcan
@@ -92,7 +95,7 @@
         <a href="/memberDelete/{{$user->id}}"><button type="button" class="btn btn-info btn-block">削除</button>
     </div>
     @endcan
-     <a href="/users" class="btn btn-outline-info" role="button">ユーザー一覧に戻る </a>
+     <a href="/users" class="btn btn-outline-info" role="button">ユーザー管理に戻る </a>
     
     </form>
  </div>   

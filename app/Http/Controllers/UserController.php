@@ -90,41 +90,48 @@ class UserController extends Controller
     public function memberEdit(Request $request){
         //バリデーションをする
 
-
+        if($request->type == 1){
         $request->validate([
-            
+        
         'name'=>['required'],
         'email'=>['required','email'],
-        'password'=>['required'],
-        'confirm_password' => ['required', 'same:password'],
-
-            
+        'password'=>['required','string', 'min:8'],
+        'confirm_password' => ['required', 'same:password'],   
+        
         ]);
+        } else{
+            $request->validate([
+        
+                'name'=>['required'],
+                'email'=>['required','email'],
+                'role'=>['required'],
+            ]);
+        }
         
         $users = User::where('id','=',$request->id)->first();
+        // dd($users);
         $users->name = $request->name;
         $users->email =$request->email;
+        if($request->type == 1){
         $users->password =Hash::make($request->password);
+    };
         $users->role =$request->role;
         $users->save();
         return redirect('/users');
     }
     //削除する
     public function memberDelete(Request $request){
-        $users = User::where('id','=',$request->id)->first();
-        $user = Auth::user();
-        if($user->role == 1) {
-            //自分のIDを削除したらログインに遷移
-            $users->delete($user->role == 1);
-            return redirect('/login');
+        $user = User::where('id','=',$request->id)->first();
+        //ユーザーIDが自分のIDだったら削除してログイン画面へ遷移
+        if(($user->id == Auth::id())) {
+            $user->delete();
+            return redirect('/');
             }
-        else{
-            $users->delete();
-        return redirect('/home');
-            }
+            $user->delete();
+        return redirect('/users');
+            
     }
-    
-
+   
     /**
      * Update the specified resource in storage.
      *

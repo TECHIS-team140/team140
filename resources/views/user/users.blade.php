@@ -14,10 +14,7 @@
  <body class="users">
  @include('parts.nav')
     <div style="width:700px; margin:100px auto; text-align:center;">
-    <h4 class="name">ユーザー管理システム画面</h4>
-    <div style="text-align:left;">
-    <a href="/home" class="btn btn-outline-info" role="button">ホーム画面に戻る</a>
-    </div>
+    <h4 class="name">ユーザー管理画面</h4>
     
     <div>
         <table class="table table-bordered" margin-top=10px;>
@@ -49,6 +46,9 @@
         @endforeach
         </div>
     </table>
+    </div>
+    <div style="text-align:center;">
+    <a href="/home" class="btn btn-outline-info" role="button">ホームに戻る</a>
     </div>
    
    
