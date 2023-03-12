@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Rules\Hankaku;
 
 class AccountController extends Controller
 {    
@@ -36,11 +37,6 @@ class AccountController extends Controller
      */
     public function auth(Request $request)
     {
-        /* $post_array = $request->all();
-        if(empty($post_array)){
-            return view('/');
-        } */
-
         $user_info = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -54,7 +50,7 @@ class AccountController extends Controller
 
         // 上記のif文でログインに成功した人以外(=ログインに失敗した人)がここに来る
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'メールアドレスまたはパスワードが間違っています。',
         ]);
     }
 
@@ -78,9 +74,9 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:4', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', new Hankaku, 'min:8', 'confirmed'],
         ]);
 
         // アカウント作成
