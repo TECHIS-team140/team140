@@ -19,10 +19,9 @@
 </head>
 
 <body>
-<div class="sticky-top ">
 
-  @include('parts.nav')
-</div>
+@include('parts.nav')
+
 <div class="container">
         <div class="row">
             @yield('content')
