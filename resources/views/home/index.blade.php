@@ -1,21 +1,17 @@
 @extends('home.layout')
 @section('contents')
 <div class ="companyinfo">
-@auth
-@if (auth()->user()->role === 1)
-    ペット用品登録が簡単に行える！
-    @endif
-@endauth
-    様々なペット用品をすぐに検索可能！
+    様々なペット用品の取り揃えあり！新着商品多数紹介してます
   <div class = "item">
+  
        新着商品⇒
-
-        @foreach ($items as $item)
+       @foreach ($items as $item)
        {{ $item->name }}&nbsp / &nbsp
           @if ($loop->iteration === 5)
           @break
           @endif
           @endforeach
+          <a href="/search">商品一覧はこちらから</a>
     </div>
 </div>
          

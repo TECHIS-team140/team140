@@ -12,13 +12,14 @@
 .item{
  font-size: 20px;
  color: black;
+text-align: center;
 }
 
 .top-image{
   position: absolute;
   left: 0;
   width: 100%;
-  height: 73%;
+  height: 72%;
   object-fit: cover;
 }
 
@@ -49,4 +50,11 @@
   animation-name: open-keyanime2 ; 
   animation-duration: 5s; 
   animation-fill-mode: both; 
+  text-align: center;
 }
+
+a{
+  font-size: 20px;
+  color: black;
+}
+
