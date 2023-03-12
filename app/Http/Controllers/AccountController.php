@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Rules\Hankaku;
 
 class AccountController extends Controller
 {    
@@ -49,7 +50,7 @@ class AccountController extends Controller
 
         // 上記のif文でログインに成功した人以外(=ログインに失敗した人)がここに来る
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'メールアドレスまたはパスワードが間違っています。',
         ]);
     }
 
@@ -73,9 +74,9 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:4', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', new Hankaku, 'min:8', 'confirmed'],
         ]);
 
         // アカウント作成
@@ -86,18 +87,7 @@ class AccountController extends Controller
             'password' => Hash::make($request->password), 
         ]);
 
-        return redirect('/account/comp');
-    }
-
-    /**
-     * アカウント登録完了画面
-     * 
-     * @param Request $request
-     * @return Response
-     */
-    public function comp()
-    {
-        return view('/account/comp');
+        return redirect('/')->with('flash_message', 'アカウント登録が完了しました');
     }
 
     /**
@@ -114,7 +104,7 @@ class AccountController extends Controller
 
         $request->session()->regenerateToken();
             
-        return redirect('/');
+        return redirect('/')->with('flash_message', 'ログアウトしました');
     }
 
     /**

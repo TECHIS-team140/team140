@@ -14,25 +14,47 @@
 </head>
 
 <body>
+    <!-- フラッシュメッセージ -->
+    @if (session('flash_message'))
+            <div class="flash_message bg-success text-center text-white py-3 my-0">
+                {{ session('flash_message') }}
+            </div>
+    @endif
+
     <main>
-        <div class="mt-5 container-fluid" style="width:400px">
-            <!-- サインアップフォーム -->
+        <div class="my-5 container-fluid" style="width:400px">
+            <!-- ログインフォーム -->
             <form action="/account/auth" method="POST" class="form-horizontal">
                 {{ csrf_field() }}
 
-                <h1>ログイン</h1>
-                <div class="form-group">
+                
+                <h1 class="text-center">ログイン</h1>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
+                <div class="my-3 form-group">
                     <label for="email">メールアドレス</label>
                     <input type="text" name="email" class="form-control">
                 </div>
-                <div class="form-group">
+
+                <div class="my-3 form-group">
                     <label for="password">パスワード</label>
                     <input type="password" name="password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">
+
+                <button type="submit" class="btn btn-primary d-grid mx-auto" style="width: 130px">
                     <i class="fa fa-plus"></i>ログイン
                 </button>
-                <p><a href="{{ url('/account/signup') }}">※初めてご利用される方はこちら</a></p>
+
+                <p><a href="{{ url('/account/signup') }}" class="my-3 row justify-content-center">※初めてご利用される方はこちら</a></p>
             </form>
         </div>
     </main>
