@@ -50,7 +50,7 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->typeAsString() }}</td>
                 <td>{{ $item->updated_at }}</td>
-                <td><a href="{{ route('detail', ['id'=>$item->user_id]) }}" class="btn btn-outline-success ">詳細</a></td>
+                <td><a href="{{ route('detail', ['id'=>$item->id]) }}" class="btn btn-outline-success ">詳細</a></td>
             </tr>
         @endforeach
         </tbody>
